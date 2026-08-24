@@ -104,6 +104,37 @@ app.get('/new', async (req, res) => {
   res.render('new-account.ejs');
 });
 
+app.post('/new', async (req, res) => {
+  await connectDB();
+
+  const { email, password, name, username } = req.body;
+  console.log(email, password, name, username, 'has received');
+
+  // try catch
+  try {
+    let user1 = new user({
+      name: name,
+      email: email,
+      password: password,
+      username: username,
+    });
+
+    user1
+      .save()
+      .then(() => {
+        console.log('Saved Successfully');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Database processing error');
+  }
+});
+
 // --- SERVER INITIALIZATION ---
 
 // ONLY run app.listen locally. Vercel handles its own port management in production.

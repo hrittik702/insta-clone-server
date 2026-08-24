@@ -2,12 +2,93 @@
   box-sizing: border-box !important;
 }
 
+:root {
+  --background-dark: #0c1014;
+  --background-light-dark: #1f1f22;
+  --font-color: #f2f4f6;
+  --fade-font-color: #9fa4ab;
+  --button-bg: #133b6e;
+  --button-hover: #363639;
+  --border: #494d53;
+  --button-blue-light: #4ba9fe;
+}
+
+* {
+  font-family: 'Roboto', sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: 'width' 100;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  color: var(--font-color);
+}
+
 .new-account {
   width: 100%;
   min-height: fit-content;
   display: flex;
   justify-content: center;
   background: #1f1f22;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--button-blue-light);
+}
+
+a:hover {
+  text-decoration: underline 1px var(--button-blue-light);
+}
+
+button {
+  width: 100%;
+  background: #0064e0 !important;
+  padding: 0.8rem !important;
+  font-weight: 600 !important;
+  border-radius: 100vw !important;
+}
+
+.already-account {
+  width: 100%;
+  background: transparent !important;
+  padding: 0.8rem !important;
+  font-weight: 600 !important;
+  border-radius: 100vw !important;
+  text-decoration: none;
+  border: 2px solid var(--border) !important;
+  color: var(--fade-font-color) !important;
+}
+
+.already-account:hover {
+  text-decoration: none;
+  color: var(--font-color) !important;
+  border: 2px solid var(--font-color) !important;
+}
+
+button:hover {
+  background: #1d76e3 !important;
+}
+
+input {
+  background: transparent !important;
+  border: 2px solid var(--border) !important;
+  color: var(--font-color) !important;
+  border-radius: 1rem !important;
+  padding: 1rem !important;
+  font-size: 1rem !important;
+}
+
+input::placeholder {
+  color: var(--fade-font-color) !important;
+  font-size: 1rem !important;
+}
+
+input:focus {
+  background: transparent !important;
+  color: var(--font-color) !important;
 }
 
 .forms {
