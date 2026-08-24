@@ -1,0 +1,19 @@
+<%- layout('/layout/master.ejs') %>
+<body>
+  <%- include('includes/sidebar.ejs') %>
+  <div class="profile-container">
+    <div class="profile">
+      <div class="p-head">
+        <div class="p-head-up">
+          <img src="<%=profile[0].photo%>" alt="profile-photo" />
+          <div class="profile-info"><p><%= profile[0].username %></p></div>
+        </div>
+        <div class="profile-settings">
+          <button class="btn btn-dark">Edit Profile</button>
+          <button class="btn btn-dark">View archive</button>
+        </div>
+      </div>
+    </div>
+    <%- include('./includes/footer.ejs') %>
+  </div>
+</body>

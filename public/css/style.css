@@ -1,0 +1,196 @@
+:root {
+  --background-dark: #0c1014;
+  --background-light-dark: #1f1f22;
+  --font-color: #f2f4f6;
+  --fade-font-color: #9fa4ab;
+  --button-bg: #133b6e;
+  --button-hover: #363639;
+  --border: #494d53;
+  --button-blue-light: #4ba9fe;
+}
+
+* {
+  font-family: 'Roboto', sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: 'width' 100;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  color: var(--font-color);
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* login css */
+main {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--background-dark);
+}
+
+.log-info {
+  width: 54%;
+  height: 100%;
+  background: var(--background-dark);
+  border-right: 1px solid var(--border);
+}
+
+.login-insta-logo {
+  width: 5rem;
+}
+
+.login-insta-art {
+  width: 60%;
+}
+
+.log-art-text {
+  font-size: 2.3rem;
+}
+
+.login-grad-text {
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fd5949 45%, #ff10b3 60%, #7928eb 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.log-forms {
+  width: 46%;
+  height: 100%;
+  background: var(--background-light-dark);
+  border-left: 1px solid var(--border);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.form-1,
+.form-2 {
+  width: 100%;
+}
+
+.log-forms input {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--font-color);
+  border-radius: 1rem !important;
+  padding: 0.8rem 0.8rem 0.8rem 1rem;
+  font-size: 1rem;
+}
+
+.log-forms input::placeholder {
+  color: var(--fade-font-color);
+  font-size: 1rem;
+  /* padding-left: 0.5rem; */
+}
+
+.btn-login {
+  width: 100%;
+  border-radius: 100vw !important;
+  padding: 0.5rem !important;
+  background: #0064e0 !important;
+}
+
+.forget-btn {
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  padding: 0.5rem !important;
+  border-radius: 100vw !important;
+}
+
+.forget-btn:hover {
+  background: var(--button-hover) !important;
+}
+
+.log-forms input:focus {
+  background: transparent;
+  color: var(--font-color);
+}
+
+.new-account-btn {
+  color: var(--button-blue-light) !important;
+  border-radius: 100vw !important;
+  border: 2px solid var(--button-blue-light) !important;
+  padding: 0.5rem !important;
+  margin-bottom: 2rem;
+}
+
+/* profile */
+.profile-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 2rem;
+  overflow: auto;
+  background: var(--background-dark);
+}
+
+.profile {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.profile {
+  min-height: 100vh;
+  flex: 1;
+}
+
+.p-head-up {
+  display: flex;
+  height: fit-content;
+  width: 80%;
+}
+
+.p-head {
+  width: 100%;
+}
+
+.p-head-up img {
+  width: 10rem;
+  border-radius: 50%;
+  margin: 1rem;
+  align-self: flex-start;
+}
+
+/* footer css */
+
+footer {
+  width: 100%;
+  background: var(--background-dark);
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--fade-font-color);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--fade-font-color);
+  margin-left: 1rem;
+}
+
+footer a:hover {
+  text-decoration: underline var(--fade-font-color);
+}

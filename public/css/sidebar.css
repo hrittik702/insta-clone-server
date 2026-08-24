@@ -1,0 +1,140 @@
+:root {
+  --background-dark: #0c1014;
+  --background-light-dark: #1f1f22;
+  --font-color: #f2f4f6;
+  --fade-font-color: #9fa4ab;
+  --button-bg: #133b6e;
+  --button-hover: #363639;
+  --border: #494d53;
+  --button-blue-light: #4ba9fe;
+}
+
+* {
+  font-family: 'Roboto', sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings: 'width' 100;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+  color: var(--font-color);
+}
+
+html,
+body {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1rem 0.2rem 1rem 0.5rem;
+  width: 4%;
+  height: 100%;
+  text-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--background-dark);
+  /* background: red; */
+  transition: 0.3s ease all;
+  overflow: hidden;
+}
+
+.sidebar:hover {
+  width: 15%;
+  transform: translateX(10);
+  transition: 0.3s ease all;
+}
+
+.s-up,
+.s-down {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  flex-wrap: nowrap;
+}
+
+.s-down {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.s-middle {
+  flex: 1;
+  flex-wrap: nowrap;
+
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  /* align-items: center; */
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar i {
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  color: var(--font-color) !important;
+  -webkit-text-stroke: 0.4px currentColor;
+}
+
+.sidebar a {
+  text-decoration: none;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+/* .sidebar a > span {
+  display: none;
+  transition: 0.3s ease all;
+} */
+
+.sidebar a:hover {
+  width: 100%;
+  background: var(--button-hover);
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 2.3rem;
+  padding-bottom: 3rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--fade-font-color);
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--fade-font-color);
+  margin-left: 1rem;
+}
+
+footer a:hover {
+  text-decoration: underline var(--fade-font-color);
+}
