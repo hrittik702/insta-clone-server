@@ -100,7 +100,9 @@ app.post('/user', async (req, res) => {
   }
 });
 
-app.get('/new', async (req, res) => {});
+app.get('/new', async (req, res) => {
+  res.render('new-account.ejs');
+});
 
 // --- SERVER INITIALIZATION ---
 
