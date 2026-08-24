@@ -5,7 +5,11 @@
     <div class="profile">
       <div class="p-head">
         <div class="p-head-up">
-          <img src="<%=profile.photo%>" alt="profile-photo" />
+          <% if(profile.photo === "") {%>
+            <img src="<%=profile.photo%>" alt="profile-photo" />
+            <% } else {%>
+            <img src="/Assets/user.png" alt="hello1">
+            <% }%>
           <div class="profile-info">
             <p class="h3">
               <b><%=profile.username%></b> <a href=""><i class="bi bi-gear-wide"></i></a>
