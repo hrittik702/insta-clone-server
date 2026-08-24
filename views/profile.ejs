@@ -5,8 +5,18 @@
     <div class="profile">
       <div class="p-head">
         <div class="p-head-up">
-          <img src="<%=profile[0].photo%>" alt="profile-photo" />
-          <div class="profile-info"><p><%= profile[0].username %></p></div>
+          <img src="<%=profile.photo%>" alt="profile-photo" />
+          <div class="profile-info">
+            <p class="h3">
+              <b><%=profile.username%></b> <a href=""><i class="bi bi-gear-wide"></i></a>
+            </p>
+            <p><%= profile.name %></p>
+            <p class="small">
+              <%=profile.posts%> posts &nbsp;&nbsp;<%=profile.followers%> followers
+              &nbsp;&nbsp;<%=profile.followings%> following
+            </p>
+            <p class="small"><%= profile.bio %></p>
+          </div>
         </div>
         <div class="profile-settings">
           <button class="btn btn-dark">Edit Profile</button>

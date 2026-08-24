@@ -27,24 +27,28 @@
     </div>
     <div class="log-forms">
       <div class="row form-1">
-        <form method="POST" action="/user" novalidate>
+        <form method="POST" action="/user" class="needs-validation" novalidate>
           <p class="h5 mb-4">Log in to Instagram</p>
           <div>
             <input
               type="email"
-              placeholder="Username or email address"
+              placeholder="Email address"
               class="form-control form-control-lg mb-3"
               name="email"
+              required
             />
           </div>
+          <div class="invalid-feedback">Please enter correct email address</div>
           <div>
             <input
               type="password"
               class="form-control form-control-lg mb-5"
               name="password"
               placeholder="Password"
+              required
             />
           </div>
+          <div class="invalid-feedback">Please enter password</div>
           <button class="btn btn-login btn-dark rounded-xl mb-3">Log in</button>
           <br />
           <button class="btn forget-btn btn-dark">Forgotten password?</button>
@@ -52,7 +56,7 @@
       </div>
       <div class="row form-2">
         <a href="/new" class="btn new-account-btn">Create new account</a>
-        <p class="text-center meta-logo">Meta</p>
+        <p class="text-center meta-logo"><i class="bi bi-meta"></i> &nbsp;Meta</p>
       </div>
     </div>
   </main>
