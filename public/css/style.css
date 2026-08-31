@@ -175,6 +175,11 @@ main {
   margin: 1rem;
 }
 
+.profile a {
+  text-decoration: none;
+  color: var(--font-color);
+}
+
 .profile .btn-dark {
   flex: 1;
   padding: 0.5rem;
@@ -204,7 +209,36 @@ main {
   font-size: 0.87rem;
 }
 
-/* footer css */
+.highlights {
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  height: 5rem;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.highlight {
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 3px solid var(--button-hover);
+}
+
+.highlight i {
+  font-size: 4rem;
+  border-radius: 3px solid var(red);
+  margin-top: 0.2rem;
+
+  color: var(--button-hover);
+}
+
+/* TODO : footer css */
 
 footer {
   width: 100%;
@@ -276,4 +310,39 @@ footer a:hover {
   footer p a {
     font-weight: 500;
   }
+}
+
+/* home.ejs */
+.home-content {
+  width: 60%;
+  height: 100%;
+}
+
+.home-follow {
+  width: 40%;
+  height: 100%;
+}
+
+.home-story {
+  width: 100%;
+  height: 7rem;
+  background-color: red;
+}
+
+.home-posts {
+  width: 100%;
+  height: 100%;
+  /* background: white; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.post-card {
+  width: 80%;
+  height: 40rem;
+  background: red;
 }

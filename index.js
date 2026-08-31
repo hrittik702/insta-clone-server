@@ -5,6 +5,7 @@ const user = require('./models/user');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const wrapAsync = require('./utils/wrapAsync');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -55,17 +56,14 @@ app.get('/', (req, res) => {
   res.render('login.ejs');
 });
 
-app.get('/api/users', async (req, res) => {
-  await connectDB(); // Always call this at the beginning of your serverless routes
-
-  try {
-    // Replace 'User' with your actual Mongoose Model
+app.get(
+  '/api/users',
+  wrapAsync(async (req, res) => {
+    await connectDB();
     const users = await user.find({ email: email });
     res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+  })
+);
 
 app.post('/user', async (req, res) => {
   await connectDB();
@@ -99,6 +97,13 @@ app.post('/user', async (req, res) => {
     res.status(500).send('Database processing error.');
   }
 });
+
+app.get(
+  '/:user',
+  wrapAsync(async (req, res) => {
+    await connectDB();
+  })
+);
 
 app.get('/new', async (req, res) => {
   res.render('new-account.ejs');
@@ -134,6 +139,25 @@ app.post('/new', async (req, res) => {
     res.status(500).send('Database processing error');
   }
 });
+
+app.get(
+  '/home/:username',
+  wrapAsync(async (req, res) => {
+    await connectDB();
+    let { username } = req.params;
+    const profileArray = await user.find({ username: username });
+
+    // 2. If the array is empty, the user does not exist
+    if (profileArray.length === 0) {
+      console.log('User not found in Atlas database.');
+      return res.redirect('/');
+    }
+
+    // 3. CRUCIAL FIX: Extract the actual user object out of the array
+    const profile = profileArray[0];
+    res.render('home.ejs', { profile });
+  })
+);
 
 // --- SERVER INITIALIZATION ---
 

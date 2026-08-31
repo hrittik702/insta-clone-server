@@ -5,7 +5,7 @@
     <div class="profile">
       <div class="p-head">
         <div class="p-head-up">
-          <% if(profile.photo === "") {%>
+          <% if(profile.photo) {%>
             <img src="<%=profile.photo%>" alt="profile-photo" />
             <% } else {%>
             <img src="/Assets/user.png" alt="hello1">
@@ -16,8 +16,9 @@
             </p>
             <p><%= profile.name %></p>
             <p class="small">
-              <%=profile.posts%> posts &nbsp;&nbsp;<%=profile.followers%> followers
-              &nbsp;&nbsp;<%=profile.followings%> following
+              <a href="/<%=profile.username%>/posts"><%=profile.posts%> posts</a>  &nbsp;&nbsp;
+              <a href="/<%=profile.username%>/followers"><%=profile.followers%> followers</a> &nbsp;&nbsp;
+              <a href="/<%=profile.username%>/followings"><%=profile.followings%> following</a>
             </p>
             <p class="small"><%= profile.bio %></p>
           </div>
@@ -25,6 +26,9 @@
         <div class="profile-settings">
           <button class="btn btn-dark">Edit Profile</button>
           <button class="btn btn-dark">View archive</button>
+        </div>
+        <div class="highlights">
+          <div class="highlight"><i class="bi bi-plus-circle-fill"></i></div>
         </div>
       </div>
     </div>
