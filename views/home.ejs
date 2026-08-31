@@ -1,0 +1,18 @@
+<%- layout('layout/master.ejs') %>
+<body>
+  <%- include('includes/sidebar.ejs') %>
+  <div class="profile-container">
+    <div class="profile">
+      <div class="home-content">
+        <div class="home-story"></div>
+        <div class="home-posts">
+          <div class="post-card card text-bg-dark">
+            <img src="<%=profile.photo%>" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="home-follow"></div>
+    </div>
+    <%- include('./includes/footer.ejs') %>
+  </div>
+</body>
