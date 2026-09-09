@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.engine('ejs', ejsMate);
 
-// Serverless-optimised database connection
+// Serverless-optimize database connection
 let isConnected = false;
 
 const connectDB = async () => {

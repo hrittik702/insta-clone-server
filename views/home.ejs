@@ -1,18 +1,323 @@
 <%- layout('layout/master.ejs') %>
-<body>
+
+<div class="app-layout">
   <%- include('includes/sidebar.ejs') %>
-  <div class="profile-container">
-    <div class="profile">
-      <div class="home-content">
-        <div class="home-story"></div>
-        <div class="home-posts">
-          <div class="post-card card text-bg-dark">
-            <img src="<%=profile.photo%>" alt="" />
+
+  <div class="main-content">
+    <!-- Mobile Top App Header (Visible only on mobile) -->
+    <header class="mobile-top-bar d-md-none">
+      <span class="mobile-brand-logo">InFrame</span>
+      <div class="mobile-top-actions">
+        <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/notification/' + profile.username : '#' %>" class="mobile-top-btn" title="Notifications">
+          <i class="bi bi-heart"></i>
+        </a>
+        <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/message/' + profile.username : '#' %>" class="mobile-top-btn" title="Messages">
+          <i class="bi bi-send"></i>
+        </a>
+      </div>
+    </header>
+
+    <div class="feed-container">
+      <!-- Main Feed Column -->
+      <div class="feed-main-col">
+        <!-- Stories Wrapper (2rem wider than posts, page background, arrow scroll controls) -->
+        <div class="stories-wrapper">
+          <button class="stories-scroll-btn stories-scroll-prev" id="storiesPrevBtn" aria-label="Previous Stories" style="display: none;">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+
+          <div class="stories-tray" id="storiesTray">
+            <!-- User's own story item -->
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <% if (typeof profile !== 'undefined' && profile.photo) { %>
+                  <img src="<%= profile.photo %>" alt="Your Story" class="story-avatar" />
+                <% } else { %>
+                  <img src="/Assets/user.png" alt="Your Story" class="story-avatar" />
+                <% } %>
+              </div>
+              <span class="story-username">Your story</span>
+            </div>
+
+            <!-- Available Friends Stories in a Single Scrollable Row -->
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=11" alt="arjun_dev" class="story-avatar" />
+              </div>
+              <span class="story-username">arjun_dev</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=5" alt="priya_codes" class="story-avatar" />
+              </div>
+              <span class="story-username">priya_codes</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=13" alt="rahul_tech" class="story-avatar" />
+              </div>
+              <span class="story-username">rahul_tech</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=47" alt="ananya_creates" class="story-avatar" />
+              </div>
+              <span class="story-username">ananya_creates</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=68" alt="vikas_cpp" class="story-avatar" />
+              </div>
+              <span class="story-username">vikas_cpp</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=33" alt="neha_ui" class="story-avatar" />
+              </div>
+              <span class="story-username">neha_ui</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=12" alt="karan_dev" class="story-avatar" />
+              </div>
+              <span class="story-username">karan_dev</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=28" alt="rohit_vlogs" class="story-avatar" />
+              </div>
+              <span class="story-username">rohit_vlogs</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=49" alt="sneha_art" class="story-avatar" />
+              </div>
+              <span class="story-username">sneha_art</span>
+            </div>
+
+            <div class="story-item">
+              <div class="story-avatar-wrap">
+                <img src="https://i.pravatar.cc/150?img=60" alt="amit_travels" class="story-avatar" />
+              </div>
+              <span class="story-username">amit_travels</span>
+            </div>
           </div>
+
+          <button class="stories-scroll-btn stories-scroll-next" id="storiesNextBtn" aria-label="Next Stories">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Feed Posts Section -->
+        <div class="feed-posts">
+          <!-- Feed Post 1 -->
+          <article class="feed-card mb-4">
+            <!-- Header -->
+            <div class="feed-card-header">
+              <div class="feed-card-user">
+                <img src="https://i.pravatar.cc/150?img=11" alt="arjun_dev" class="feed-user-avatar" />
+                <span class="feed-user-name">arjun_dev</span>
+                <span class="feed-card-time">• 2h</span>
+              </div>
+              <div class="feed-card-options">
+                <i class="bi bi-three-dots"></i>
+              </div>
+            </div>
+
+            <!-- Media Image -->
+            <div class="feed-card-media">
+              <img
+                src="<%= (typeof profile !== 'undefined' && profile.photo) ? profile.photo : 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80' %>"
+                alt="Post content"
+              />
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="feed-card-actions">
+              <div class="feed-actions-left">
+                <button class="feed-action-btn" title="Like"><i class="bi bi-heart"></i></button>
+                <button class="feed-action-btn" title="Comment"><i class="bi bi-chat"></i></button>
+                <button class="feed-action-btn" title="Share"><i class="bi bi-send"></i></button>
+              </div>
+              <button class="feed-action-btn" title="Save"><i class="bi bi-bookmark"></i></button>
+            </div>
+
+            <!-- Content Details -->
+            <div class="feed-card-content">
+              <div class="feed-likes-count">1,248 likes</div>
+              <div class="feed-caption">
+                <span class="feed-caption-user">arjun_dev</span>
+                Exploring the beauty of clean code and minimal UI designs! 🚀✨ #developer #coding #webdev
+              </div>
+              <div class="feed-view-comments">View all 42 comments</div>
+            </div>
+
+            <!-- Add Comment Bar -->
+            <div class="feed-add-comment">
+              <i class="bi bi-emoji-smile text-secondary fs-5"></i>
+              <input type="text" placeholder="Add a comment..." />
+              <button class="feed-post-comment-btn">Post</button>
+            </div>
+          </article>
+
+          <!-- Feed Post 2 -->
+          <article class="feed-card">
+            <!-- Header -->
+            <div class="feed-card-header">
+              <div class="feed-card-user">
+                <img src="https://i.pravatar.cc/150?img=47" alt="ananya_creates" class="feed-user-avatar" />
+                <span class="feed-user-name">ananya_creates</span>
+                <span class="feed-card-time">• 5h</span>
+              </div>
+              <div class="feed-card-options">
+                <i class="bi bi-three-dots"></i>
+              </div>
+            </div>
+
+            <!-- Media Image -->
+            <div class="feed-card-media">
+              <img
+                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=80"
+                alt="Post content"
+              />
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="feed-card-actions">
+              <div class="feed-actions-left">
+                <button class="feed-action-btn" title="Like"><i class="bi bi-heart"></i></button>
+                <button class="feed-action-btn" title="Comment"><i class="bi bi-chat"></i></button>
+                <button class="feed-action-btn" title="Share"><i class="bi bi-send"></i></button>
+              </div>
+              <button class="feed-action-btn" title="Save"><i class="bi bi-bookmark"></i></button>
+            </div>
+
+            <!-- Content Details -->
+            <div class="feed-card-content">
+              <div class="feed-likes-count">3,892 likes</div>
+              <div class="feed-caption">
+                <span class="feed-caption-user">ananya_creates</span>
+                Golden hour magic by the coast 🌅🌊
+              </div>
+              <div class="feed-view-comments">View all 89 comments</div>
+            </div>
+
+            <!-- Add Comment Bar -->
+            <div class="feed-add-comment">
+              <i class="bi bi-emoji-smile text-secondary fs-5"></i>
+              <input type="text" placeholder="Add a comment..." />
+              <button class="feed-post-comment-btn">Post</button>
+            </div>
+          </article>
         </div>
       </div>
-      <div class="home-follow"></div>
+
+      <!-- Right Suggestions Column -->
+      <aside class="feed-sidebar-right">
+        <!-- Current User Switch Widget -->
+        <div class="feed-sidebar-profile">
+          <div class="feed-sidebar-user">
+            <% if (typeof profile !== 'undefined' && profile.photo) { %>
+              <img src="<%= profile.photo %>" alt="Profile" class="feed-sidebar-user-avatar" />
+            <% } else { %>
+              <img src="/Assets/user.png" alt="Profile" class="feed-sidebar-user-avatar" />
+            <% } %>
+            <div class="feed-sidebar-user-info">
+              <span class="feed-sidebar-username"><%= (typeof profile !== 'undefined' && profile.username) ? profile.username : 'User' %></span>
+              <span class="feed-sidebar-fullname"><%= (typeof profile !== 'undefined' && profile.name) ? profile.name : '' %></span>
+            </div>
+          </div>
+          <a href="/" class="feed-switch-btn">Switch</a>
+        </div>
+
+        <!-- Suggested For You Header -->
+        <div class="feed-suggestions-header">
+          <span>Suggested for you</span>
+          <a href="#" class="feed-see-all">See All</a>
+        </div>
+
+        <!-- Suggested Users List -->
+        <div class="feed-suggestions-list">
+          <div class="feed-suggestion-row">
+            <div class="feed-sidebar-user">
+              <img src="https://i.pravatar.cc/150?img=5" alt="priya_codes" class="feed-sidebar-user-avatar" />
+              <div class="feed-sidebar-user-info">
+                <span class="feed-sidebar-username">priya_codes</span>
+                <span class="feed-sidebar-fullname">Followed by arjun_dev + 3 more</span>
+              </div>
+            </div>
+            <button class="feed-follow-btn">Follow</button>
+          </div>
+
+          <div class="feed-suggestion-row">
+            <div class="feed-sidebar-user">
+              <img src="https://i.pravatar.cc/150?img=13" alt="rahul_tech" class="feed-sidebar-user-avatar" />
+              <div class="feed-sidebar-user-info">
+                <span class="feed-sidebar-username">rahul_tech</span>
+                <span class="feed-sidebar-fullname">Suggested for you</span>
+              </div>
+            </div>
+            <button class="feed-follow-btn">Follow</button>
+          </div>
+
+          <div class="feed-suggestion-row">
+            <div class="feed-sidebar-user">
+              <img src="https://i.pravatar.cc/150?img=68" alt="vikas_cpp" class="feed-sidebar-user-avatar" />
+              <div class="feed-sidebar-user-info">
+                <span class="feed-sidebar-username">vikas_cpp</span>
+                <span class="feed-sidebar-fullname">New to InFrame</span>
+              </div>
+            </div>
+            <button class="feed-follow-btn">Follow</button>
+          </div>
+        </div>
+
+        <!-- Mini Footer -->
+        <div class="ig-footer-links text-start justify-content-start mt-3" style="font-size: 0.78rem;">
+          <a href="#">About</a> • <a href="#">Help</a> • <a href="#">Press</a> • <a href="#">API</a> • <a href="#">Jobs</a> • <a href="#">Privacy</a> • <a href="#">Terms</a>
+        </div>
+        <div class="mt-2" style="color: var(--text-bright-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px;">
+          &copy; 2026 INFRAME
+        </div>
+      </aside>
     </div>
-    <%- include('./includes/footer.ejs') %>
   </div>
-</body>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tray = document.getElementById('storiesTray');
+    const prevBtn = document.getElementById('storiesPrevBtn');
+    const nextBtn = document.getElementById('storiesNextBtn');
+
+    if (tray && prevBtn && nextBtn) {
+      const updateButtons = () => {
+        const maxScroll = tray.scrollWidth - tray.clientWidth;
+        prevBtn.style.display = tray.scrollLeft > 15 ? 'flex' : 'none';
+        nextBtn.style.display = tray.scrollLeft < maxScroll - 15 ? 'flex' : 'none';
+      };
+
+      prevBtn.addEventListener('click', () => {
+        tray.scrollBy({ left: -280, behavior: 'smooth' });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        tray.scrollBy({ left: 280, behavior: 'smooth' });
+      });
+
+      tray.addEventListener('scroll', updateButtons, { passive: true });
+      window.addEventListener('resize', updateButtons);
+      updateButtons();
+    }
+  });
+</script>
+
+

@@ -1,67 +1,67 @@
-<%- layout('/layout/master.ejs') %>
-<head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
-    integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-</head>
-<body>
-  <main>
-    <div class="log-info">
-      <img
-        src="/Assets/instagram-logo.png"
-        alt="instagram-logo"
-        class="login-insta-logo mt-5 ms-5 mb-3"
-      />
-      <p class="text-center log-art-text">
-        See everyday moments from your <br /><span class="login-grad-text">close friends.</span>
-      </p>
-      <img
-        src="/Assets/login-left-art.webp"
-        alt="login-insta-art"
-        class="login-insta-art mx-auto d-block"
-      />
+<%- layout('layout/master.ejs') %>
+
+<div class="login-page-wrapper">
+  <div class="login-main-container">
+    <!-- Left Hero Art Section -->
+    <div class="login-art-section">
+      <img src="/Assets/instagram-logo.png" alt="Instagram" class="login-brand-logo" />
+      <h1 class="login-hero-text">
+        See everyday moments from your <br />
+        <span class="login-grad-text">close friends.</span>
+      </h1>
+      <img src="/Assets/login-left-art.webp" alt="Instagram Art" class="login-hero-img" />
     </div>
-    <div class="log-forms">
-      <div class="form-1">
-        <img class="form-insta-logo" src="/Assets/instagram-logo.png" alt="" />
-      </div>
-      <div class="row form-1">
+
+    <!-- Right Login Forms Section -->
+    <div class="login-form-section">
+      <!-- Main Login Card -->
+      <div class="login-card">
+        <h2 class="login-card-title">Log in to InFrame</h2>
         <form method="POST" action="/user" class="needs-validation" novalidate>
-          <p class="h5 mb-4">Log in to Instagram</p>
-          <div>
+          <div class="mb-3 text-start">
             <input
               type="email"
               placeholder="Email address"
-              class="form-control form-control-lg mb-3"
+              class="ig-input"
               name="email"
               required
             />
+            <div class="invalid-feedback text-start mt-1">Please enter a valid email address.</div>
           </div>
-          <div class="invalid-feedback">Please enter correct email address</div>
-          <div>
+
+          <div class="mb-3 text-start">
             <input
               type="password"
-              class="form-control form-control-lg mb-5"
+              class="ig-input"
               name="password"
               placeholder="Password"
               required
             />
+            <div class="invalid-feedback text-start mt-1">Please enter your password.</div>
           </div>
-          <div class="invalid-feedback">Please enter password</div>
-          <button class="btn btn-login btn-dark rounded-xl mb-3">Log in</button>
-          <br />
-          <button class="btn forget-btn btn-dark">Forgotten password?</button>
+
+          <button type="submit" class="btn-ig-primary w-100 mt-2">Log in</button>
+
+          <div class="ig-divider">OR</div>
+
+          <a href="#" class="login-forgot-link">Forgotten your password?</a>
         </form>
       </div>
-      <div class="row form-2">
-        <a href="/new" class="btn new-account-btn">Create new account</a>
-        <p class="text-center meta-logo"><i class="bi bi-meta"></i> &nbsp;Meta</p>
+
+      <!-- Sign Up Switch Card -->
+      <div class="login-signup-card">
+        <span>Don't have an account?</span>
+        <a href="/new">Sign up</a>
+      </div>
+
+      <!-- Meta Branding -->
+      <div class="meta-brand-tag">
+        <i class="bi bi-meta"></i>
+        <span>Meta</span>
       </div>
     </div>
-  </main>
-  <%- include('../views/includes/footer.ejs') %>
-</body>
+  </div>
+
+  <%- include('includes/footer.ejs') %>
+</div>
+

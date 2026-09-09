@@ -1,21 +1,81 @@
-<head>
-  <link rel="stylesheet" href="/css/sidebar.css" />
-</head>
-<div class="sidebar">
-  <div class="s-up">
-    <a href=""><i class="bi bi-instagram"></i></a>
+<aside class="sidebar">
+  <!-- Top Brand / Logo -->
+  <div class="sidebar-top">
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/home/' + profile.username : '/' %>" class="sidebar-brand-link" title="InFrame">
+      <i class="bi bi-instagram sidebar-brand-icon"></i>
+      <span class="sidebar-brand-text">InFrame</span>
+    </a>
   </div>
-  <div class="s-middle">
-    <a href="/home/<%=profile.username%>"><i class="bi bi-house-door"> </i><span>Home</span></a>
-    <a href="/home/<%=profile.username%>"><i class="bi bi-film"></i><span>Posts</span></a>
-    <a href="/message/<%=profile.username%>"><i class="bi bi-send"></i><span>Messages</span></a>
-    <a href=""><i class="bi bi-search"></i><span>Search</span></a>
-    <a href=""><i class="bi bi-heart"></i><span>Notifications</span></a>
-    <a href=""><i class="bi bi-plus-lg"></i><span>Create</span></a>
-    <a href="/<%=profile.username%>"><img src="<%=profile.photo%>" alt="" /><span>Profile</span></a>
+
+  <!-- Middle Main Navigation Options -->
+  <nav class="sidebar-nav-middle">
+    <!-- 1. Home -->
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/home/' + profile.username : '/' %>" class="sidebar-link mobile-nav-home" data-nav="home" title="Home">
+      <i class="bi bi-house-door nav-icon-outline"></i>
+      <i class="bi bi-house-door-fill nav-icon-fill"></i>
+      <span>Home</span>
+    </a>
+
+    <!-- 2. Search -->
+    <a href="#" class="sidebar-link mobile-nav-search" data-nav="search" title="Search">
+      <i class="bi bi-search nav-icon-outline"></i>
+      <i class="bi bi-search nav-icon-fill" style="-webkit-text-stroke: 0.8px currentColor;"></i>
+      <span>Search</span>
+    </a>
+
+    <!-- Posts (Desktop Only) -->
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/home/' + profile.username : '#' %>" class="sidebar-link sidebar-hide-mobile" data-nav="posts" title="Posts">
+      <i class="bi bi-images nav-icon-outline"></i>
+      <i class="bi bi-images nav-icon-fill"></i>
+      <span>Posts</span>
+    </a>
+
+    <!-- Messages (Desktop Only) -->
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/message/' + profile.username : '#' %>" class="sidebar-link sidebar-hide-mobile" data-nav="messages" title="Messages">
+      <i class="bi bi-send nav-icon-outline"></i>
+      <i class="bi bi-send-fill nav-icon-fill"></i>
+      <span>Messages</span>
+    </a>
+
+    <!-- 3. Create -->
+    <a href="#" class="sidebar-link mobile-nav-create" data-nav="create" title="Create">
+      <i class="bi bi-plus-square nav-icon-outline"></i>
+      <i class="bi bi-plus-square-fill nav-icon-fill"></i>
+      <span>Create</span>
+    </a>
+
+    <!-- 4. Notifications -->
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/notification/' + profile.username : '#' %>" class="sidebar-link mobile-nav-notifications" data-nav="notifications" title="Notifications">
+      <i class="bi bi-heart nav-icon-outline"></i>
+      <i class="bi bi-heart-fill nav-icon-fill"></i>
+      <span>Notifications</span>
+    </a>
+
+    <!-- 5. Profile -->
+    <a href="<%= (typeof profile !== 'undefined' && profile.username) ? '/' + profile.username : '/' %>" class="sidebar-link mobile-nav-profile" data-nav="profile" title="Profile">
+      <% if (typeof profile !== 'undefined' && profile.photo) { %>
+        <img src="<%= profile.photo %>" alt="Profile" class="sidebar-avatar" />
+      <% } else { %>
+        <img src="/Assets/user.png" alt="Profile" class="sidebar-avatar" />
+      <% } %>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Bottom Navigation (More & Settings - Desktop Only) -->
+  <div class="sidebar-bottom">
+    <a href="#" class="sidebar-link sidebar-hide-mobile" title="More">
+      <i class="bi bi-list"></i>
+      <span>More</span>
+    </a>
+    <a href="#" class="sidebar-link sidebar-hide-mobile" title="Settings">
+      <i class="bi bi-gear nav-icon-outline"></i>
+      <i class="bi bi-gear-fill nav-icon-fill"></i>
+      <span>Settings</span>
+    </a>
   </div>
-  <div class="s-down">
-    <a href=""><i class="bi bi-list"></i> <span>More</span></a>
-    <a href=""><i class="bi bi-boxes"></i> <span>Also From Meta</span></a>
-  </div>
-</div>
+</aside>
+
+
+
+

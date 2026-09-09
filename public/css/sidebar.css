@@ -1,145 +1,295 @@
+/* ==========================================================================
+   InFrame Sidebar & Collapsible Navigation Styling
+   ========================================================================== */
+
 :root {
-  --background-dark: #0c1014;
-  --background-light-dark: #1f1f22;
-  --font-color: #f2f4f6;
-  --fade-font-color: #9fa4ab;
-  --button-bg: #133b6e;
-  --button-hover: #363639;
-  --border: #494d53;
-  --button-blue-light: #4ba9fe;
+  --sidebar-collapsed-width: 72px;
+  --sidebar-expanded-width: 245px;
 }
 
-* {
-  font-family: 'Roboto', sans-serif !important;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-variation-settings: 'width' 100;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box !important;
-  color: var(--font-color);
-}
-
-html,
-body {
-  width: 100%;
-}
-
-main {
-  width: 100%;
-  height: 100%;
-}
-
-/* Sidebar Styling */
 .sidebar {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
-  padding: 1.5rem 0.2rem 1.5rem 0.5rem;
-  width: 4%;
-  height: 100%;
-  text-wrap: nowrap;
+  bottom: 0;
+  height: 100vh;
+  width: var(--sidebar-collapsed-width);
+  background-color: var(--background-dark, #0c1014);
+  border-right: 1px solid var(--border, #1e242c);
+  padding: 1.25rem 0.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
-  background: var(--background-dark);
-  /* background: red; */
-  transition: 0.3s ease all;
+  z-index: 1000;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, background-color 0.2s ease;
   overflow: hidden;
-  margin-left: 0.5rem;
+  white-space: nowrap;
 }
 
-.sidebar:hover {
-  width: 15%;
-  transform: translateX(10);
-  transition: 0.3s ease all;
+/* On Desktop Hover: Expand to full navigation drawer */
+@media (min-width: 769px) {
+  .sidebar:hover {
+    width: var(--sidebar-expanded-width);
+    box-shadow: 12px 0 35px rgba(0, 0, 0, 0.7);
+    background-color: #0f141a;
+  }
 }
 
-.s-up,
-.s-down {
-  flex: 1;
-  width: 100%;
-  flex-wrap: nowrap;
-}
-
-.s-down {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-
-  justify-content: flex-end;
-  gap: 1rem;
-}
-
-.s-middle {
-  flex: 1;
-  flex-wrap: nowrap;
-
-  width: 100%;
-  display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
-  justify-content: center;
-  /* align-items: center; */
-  padding-bottom: 2rem;
-  margin-bottom: 2rem;
-}
-
-.sidebar i {
-  font-size: 1.4rem !important;
-  margin-left: 0.3rem;
-  font-weight: 500 !important;
-  color: var(--font-color) !important;
-  -webkit-text-stroke: 0.4px currentColor;
-}
-
-.sidebar a {
-  text-decoration: none;
-  width: fit-content;
+/* Top Section (Brand / Logo) */
+.sidebar-top {
+  padding: 0.25rem 0.4rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  flex-shrink: 0;
 }
 
-/* .sidebar a > span {
-  display: none;
-  transition: 0.3s ease all;
-} */
-
-.sidebar a:hover {
+.sidebar-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: var(--font-color, #f2f4f6);
   width: 100%;
-  background: var(--button-hover);
 }
 
-footer {
-  width: 100%;
+.sidebar-brand-icon {
+  font-size: 1.75rem;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color, #f2f4f6);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.sidebar-brand-link:hover .sidebar-brand-icon {
+  transform: scale(1.08);
+}
+
+.sidebar-brand-text {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: radial-gradient(circle at 30% 107%, #fd5949 45%, #ff10b3 60%, #7928eb 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, max-width 0.25s ease;
+  display: inline-block;
+}
+
+.sidebar:hover .sidebar-brand-text {
+  opacity: 1;
+  max-width: 160px;
+  transform: translateX(0);
+}
+
+/* Middle Section: Main Page Navigation Options (Vertically Centered) */
+.sidebar-nav-middle {
   display: flex;
   flex-direction: column;
-  padding-top: 2.3rem;
-  padding-bottom: 3rem;
   justify-content: center;
+  gap: 0.45rem;
+  margin: auto 0;
+  width: 100%;
+}
+
+/* Navigation Links */
+.sidebar-link {
+  display: flex;
   align-items: center;
-  color: var(--fade-font-color);
-  font-size: 0.7rem;
-  letter-spacing: 0.5px;
-}
-
-footer a {
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border-radius: 12px;
+  color: var(--font-color, #f2f4f6);
   text-decoration: none;
-  color: var(--fade-font-color);
-  margin-left: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  overflow: hidden;
+  width: 100%;
 }
 
-footer a:hover {
-  text-decoration: underline var(--fade-font-color);
+.sidebar-link:hover {
+  background-color: var(--button-hover-dark, #222933);
+  color: #ffffff;
 }
 
-.s-middle img {
-  width: 2rem;
+.sidebar-link:active {
+  transform: scale(0.98);
+}
+
+.sidebar-link i {
+  font-size: 1.45rem;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--font-color, #f2f4f6);
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.sidebar-link:hover i {
+  transform: scale(1.08);
+}
+
+/* Outline vs Fill Icon Display */
+.nav-icon-outline {
+  display: flex !important;
+}
+
+.nav-icon-fill {
+  display: none !important;
+}
+
+/* Active State: Switch from Outline to Fill */
+.sidebar-link.active {
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+.sidebar-link.active .nav-icon-outline {
+  display: none !important;
+}
+
+.sidebar-link.active .nav-icon-fill {
+  display: flex !important;
+  color: #ffffff !important;
+}
+
+.sidebar-avatar {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  margin: 0 8px;
   border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1.5px solid var(--border-subtle, #29313b);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.sidebar-link.active .sidebar-avatar {
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--background-dark);
+}
+
+.sidebar-link span {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transform: translateX(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, max-width 0.25s ease;
+  white-space: nowrap;
+}
+
+.sidebar:hover .sidebar-link span {
+  opacity: 1;
+  max-width: 150px;
+  transform: translateX(0);
+}
+
+/* Bottom Section (More & Settings) */
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Mobile Navigation (≤768px): 5 Items in Exact Requested Order
+   1. Home  2. Search  3. Create  4. Notifications  5. Profile
+   ========================================================================== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 0.5rem;
+    background-color: var(--background-dark, #0c1014);
+    border-right: none;
+    border-top: 1px solid var(--border, #1e242c);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .sidebar-top,
+  .sidebar-bottom,
+  .sidebar-link span,
+  .sidebar-hide-mobile {
+    display: none !important;
+  }
+
+  .sidebar-nav-middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    gap: 0;
+  }
+
+  /* 5-Item Ordered Layout on Mobile */
+  .mobile-nav-home {
+    order: 1;
+    display: flex !important;
+  }
+
+  .mobile-nav-search {
+    order: 2;
+    display: flex !important;
+  }
+
+  .mobile-nav-create {
+    order: 3;
+    display: flex !important;
+  }
+
+  .mobile-nav-notifications {
+    order: 4;
+    display: flex !important;
+  }
+
+  .mobile-nav-profile {
+    order: 5;
+    display: flex !important;
+  }
+
+  .sidebar-link {
+    padding: 0.4rem;
+    border-radius: 50%;
+    width: auto;
+    justify-content: center;
+  }
+
+  .sidebar-link i {
+    font-size: 1.45rem;
+    min-width: auto;
+  }
+
+  .sidebar-avatar {
+    margin: 0;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+  }
+}
+
+
+
+

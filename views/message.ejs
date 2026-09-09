@@ -1,0 +1,20 @@
+<%- layout('layout/master.ejs') %>
+
+<div class="app-layout">
+  <%- include('includes/sidebar.ejs') %>
+
+  <div class="main-content">
+    <div class="feed-container">
+      <div class="feed-main-col text-center py-5">
+        <div class="empty-posts-icon mx-auto mb-3" style="width: 72px; height: 72px; font-size: 2rem;">
+          <i class="bi bi-chat-dots"></i>
+        </div>
+        <h3 class="fw-bold mb-2">Your Messages</h3>
+        <p class="text-muted small mb-4">Send private photos and messages to a friend or group.</p>
+        <button class="btn-ig-primary">Send message</button>
+      </div>
+    </div>
+    <%- include('includes/footer.ejs') %>
+  </div>
+</div>
+

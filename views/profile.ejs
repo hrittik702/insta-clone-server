@@ -1,37 +1,104 @@
-<%- layout('/layout/master.ejs') %>
-<body>
+<%- layout('layout/master.ejs') %>
+
+<div class="app-layout">
   <%- include('includes/sidebar.ejs') %>
-  <div class="profile-container">
-    <div class="profile">
-      <div class="p-head">
-        <div class="p-head-up">
-          <% if(profile.photo) {%>
-            <img src="<%=profile.photo%>" alt="profile-photo" />
-            <% } else {%>
-            <img src="/Assets/user.png" alt="hello1">
-            <% }%>
-          <div class="profile-info">
-            <p class="h3">
-              <b><%=profile.username%></b> <a href=""><i class="bi bi-gear-wide"></i></a>
-            </p>
-            <p><%= profile.name %></p>
-            <p class="small">
-              <a href="/<%=profile.username%>/posts"><%=profile.posts%> posts</a>  &nbsp;&nbsp;
-              <a href="/<%=profile.username%>/followers"><%=profile.followers%> followers</a> &nbsp;&nbsp;
-              <a href="/<%=profile.username%>/followings"><%=profile.followings%> following</a>
-            </p>
-            <p class="small"><%= profile.bio %></p>
+
+  <div class="main-content">
+    <!-- Mobile Top Profile Header -->
+    <header class="mobile-top-bar d-md-none">
+      <span class="mobile-brand-logo"><%= (typeof profile !== 'undefined' && profile.username) ? profile.username : 'InFrame' %></span>
+      <div class="mobile-top-actions">
+        <a href="#" class="mobile-top-btn"><i class="bi bi-gear"></i></a>
+      </div>
+    </header>
+
+    <div class="profile-page">
+      <!-- Profile Header Section (Centered Horizontally) -->
+      <header class="profile-header">
+        <div class="profile-avatar-wrapper">
+          <% if (typeof profile !== 'undefined' && profile.photo) { %>
+            <img src="<%= profile.photo %>" alt="<%= profile.username %>" class="profile-avatar" />
+          <% } else { %>
+            <img src="/Assets/user.png" alt="Profile" class="profile-avatar" />
+          <% } %>
+        </div>
+
+        <div class="profile-info">
+          <!-- Row 1: Username & Action Buttons -->
+          <div class="profile-info-top">
+            <h1 class="profile-username"><%= (typeof profile !== 'undefined' && profile.username) ? profile.username : 'User' %></h1>
+            <div class="profile-actions">
+              <a href="#" class="btn-ig-secondary">Edit profile</a>
+              <a href="#" class="btn-ig-secondary">View archive</a>
+              <a href="#" class="profile-settings-icon" title="Settings">
+                <i class="bi bi-gear-wide"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Row 2: Full Name & Bio (Placed ABOVE Followers / Stats) -->
+          <div class="profile-bio-section">
+            <div class="profile-fullname"><%= (typeof profile !== 'undefined' && profile.name) ? profile.name : '' %></div>
+            <% if (typeof profile !== 'undefined' && profile.bio) { %>
+              <div class="profile-bio-text"><%= profile.bio %></div>
+            <% } %>
+          </div>
+
+          <!-- Row 3: Stats (Posts, Followers, Following) -->
+          <div class="profile-stats">
+            <div class="profile-stat-item">
+              <span class="profile-stat-num"><%= (typeof profile !== 'undefined' && profile.posts) ? profile.posts : 0 %></span> posts
+            </div>
+            <div class="profile-stat-item">
+              <span class="profile-stat-num"><%= (typeof profile !== 'undefined' && profile.followers) ? profile.followers : 0 %></span> followers
+            </div>
+            <div class="profile-stat-item">
+              <span class="profile-stat-num"><%= (typeof profile !== 'undefined' && profile.followings) ? profile.followings : 0 %></span> following
+            </div>
           </div>
         </div>
-        <div class="profile-settings">
-          <button class="btn btn-dark">Edit Profile</button>
-          <button class="btn btn-dark">View archive</button>
+      </header>
+
+      <!-- Story Highlights Row -->
+      <div class="story-highlights-container">
+        <div class="highlight-item">
+          <div class="highlight-ring">
+            <i class="bi bi-plus-lg"></i>
+          </div>
+          <span class="highlight-title">New</span>
         </div>
-        <div class="highlights">
-          <div class="highlight"><i class="bi bi-plus-circle-fill"></i></div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="profile-tabs">
+        <div class="profile-tab active">
+          <i class="bi bi-grid-3x3"></i>
+          <span>Posts</span>
+        </div>
+        <div class="profile-tab">
+          <i class="bi bi-bookmark"></i>
+          <span>Saved</span>
+        </div>
+        <div class="profile-tab">
+          <i class="bi bi-person-square"></i>
+          <span>Tagged</span>
+        </div>
+      </div>
+
+      <!-- Posts Grid Section -->
+      <div class="profile-posts-grid">
+        <div class="empty-posts-state">
+          <div class="empty-posts-icon">
+            <i class="bi bi-camera"></i>
+          </div>
+          <h3 class="fw-bold mb-2">Share Photos</h3>
+          <p class="text-muted small">When you share photos, they will appear on your profile.</p>
+          <button class="btn-ig-primary mt-2">Share your first photo</button>
         </div>
       </div>
     </div>
-    <%- include('./includes/footer.ejs') %>
+
+    <%- include('includes/footer.ejs') %>
   </div>
-</body>
+</div>
+

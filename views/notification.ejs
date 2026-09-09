@@ -1,0 +1,49 @@
+<%- layout('layout/master.ejs') %>
+
+<div class="app-layout">
+  <%- include('includes/sidebar.ejs') %>
+
+  <div class="main-content">
+    <div class="feed-container">
+      <div class="feed-main-col">
+        <h3 class="fw-bold mb-4">Notifications</h3>
+
+        <div class="d-flex flex-column gap-3">
+          <div class="d-flex align-items-center justify-content-between p-2 rounded" style="background: var(--background-light-dark);">
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/150?img=11" alt="avatar" class="feed-user-avatar" />
+              <div>
+                <span class="fw-bold">arjun_dev</span> started following you.
+                <div class="text-muted small">2h ago</div>
+              </div>
+            </div>
+            <button class="btn-ig-primary btn-sm">Follow Back</button>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between p-2 rounded" style="background: var(--background-light-dark);">
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/150?img=5" alt="avatar" class="feed-user-avatar" />
+              <div>
+                <span class="fw-bold">priya_codes</span> liked your photo.
+                <div class="text-muted small">5h ago</div>
+              </div>
+            </div>
+            <i class="bi bi-heart-fill text-danger fs-5 me-2"></i>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between p-2 rounded" style="background: var(--background-light-dark);">
+            <div class="d-flex align-items-center gap-3">
+              <img src="https://i.pravatar.cc/150?img=47" alt="avatar" class="feed-user-avatar" />
+              <div>
+                <span class="fw-bold">ananya_creates</span> commented: "Awesome shot! ✨"
+                <div class="text-muted small">1d ago</div>
+              </div>
+            </div>
+            <i class="bi bi-chat-fill text-primary fs-5 me-2"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('includes/footer.ejs') %>
+  </div>
+</div>
